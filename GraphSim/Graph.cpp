@@ -233,7 +233,7 @@ void Graph::printPath(Vertex* u, Vertex* v)
 		}
 		else {
 			if (!x->prev && x != u) {
-				std::cout << "Greska! Nema puta od cvora " << u->name << " do cvora " << v->name << '\n';
+				std::cout << "Error! No path from node " << u->name << " to node " << v->name << '\n';
 				return;
 			}
 			else {
@@ -278,7 +278,7 @@ Vertex* Graph::findKthInfluential(int k)
 {
 	vertexMaxPrioQueue* influencersList = influencers();
 	if (k > influencersList->heapsize) {
-		std::cout << "Greska! K je veci od broj cvorova u grafu!\n";
+		std::cout << "Error! K is larger than amount of nodes in graph!\n";
 		return nullptr;
 	}
 	Vertex* kthInfluential = nullptr;
@@ -298,7 +298,7 @@ bool Graph::createGraph(std::string filename)
 		return true;
 	}
 	else {
-		std::cout << "Greska! Neuspesno ucitavanje grafa!" << std::endl;
+		std::cout << "Error! Failed to load graph from file!" << std::endl;
 		return false;
 	}
 };
@@ -308,7 +308,7 @@ bool Graph::loadGraphFromFile(std::string fileName)
 	std::ifstream dat;
 	dat.open(fileName);
 	if (!dat.is_open()) {
-		std::cout << "Greska u otvaranju fajla " << fileName << "!\n";
+		std::cout << "Error opening file: " << fileName << "!\n";
 		return false;
 	}
 	std::string line;
@@ -320,7 +320,7 @@ bool Graph::loadGraphFromFile(std::string fileName)
 		edgeNum = std::stoi(line);
 	}
 	catch (std::invalid_argument const& ex) {
-		std::cout << "Greska! " << ex.what() << std::endl;
+		std::cout << "Error! " << ex.what() << std::endl;
 		dat.close();
 		return false;
 	}
@@ -342,12 +342,12 @@ bool Graph::loadGraphFromFile(std::string fileName)
 		Vertex* from = this->findVertex(name1);
 		Vertex* to = this->findVertex(name2);
 		if (!from) {
-			std::cout << "Greska! Nije nadjen cvor za ivicu sa imenom: " << name1 << '\n';
+			std::cout << "Error! Node not found: " << name1 << '\n';
 			dat.close();
 			return false;
 		}
 		if (!to) {
-			std::cout << "Greska! Nije nadjen cvor za ivicu sa imenom: " << name2 << '\n';
+			std::cout << "Error! Node not found: " << name2 << '\n';
 			dat.close();
 			return false;
 		}
@@ -368,9 +368,9 @@ void Graph::deleteGraph()
 
 bool Graph::addVertex(std::string name)
 {
-	if (name.size() > 20) { std::cout << "Greska! Predugacko ime za cvor.\n"; return false; }
+	if (name.size() > 20) { std::cout << "Error! Name for node too long. Max 20 chars.\n"; return false; }
 	if (this->findVertex(name) != nullptr) {
-		std::cout << "Greska! Vec postoji cvor sa imenom: " << name << '\n';
+		std::cout << "Error! Node already exists: " << name << '\n';
 		return false;
 	}
 	Vertex* v = new Vertex(name);
@@ -610,5 +610,5 @@ void Graph::printKthInfluential(int k)
 {
 	Vertex* kthInfluential = findKthInfluential(k);
 	if (!kthInfluential) return;
-	std::cout << k << ". najuticajnija osoba je: " << kthInfluential->name << " sa uticajem " << kthInfluential->d << '\n';
+	std::cout << k << "th most influential node: " << kthInfluential->name << " with influence " << kthInfluential->d << '\n';
 }
