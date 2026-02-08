@@ -1,8 +1,9 @@
-# Social network simulator
-  
-This is a graph-based, adjacency-list social network simulator.  
-Nodes represent users, edges represent relationships (followings, connections).
+# Social Network Simulator
 
+[Download the tool for Windows!](https://github.com/akalicanin/social-network-sim/releases/)
+  
+This is a command-line, graph-based, adjacency-list social network simulator.
+Nodes represent users, edges represent relationships (followings, connections).
   
 ## How it works
 
