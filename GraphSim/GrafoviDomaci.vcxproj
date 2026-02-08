@@ -125,6 +125,11 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /D "$(ProjectDir)network30.txt" "$(OutDir)"
+xcopy /Y /D "$(ProjectDir)network15.txt" "$(OutDir)"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Graph.cpp" />
@@ -133,6 +138,13 @@
   <ItemGroup>
     <ClInclude Include="Graph.h" />
     <ClInclude Include="HelperDataStructures.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="graphsim.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="programicon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
